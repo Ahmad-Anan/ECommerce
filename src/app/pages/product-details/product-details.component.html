@@ -1,0 +1,40 @@
+@if (productDetails ) {
+<section class="product-details   ">
+    <div class="container mx-auto">
+        <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-x-4 items-center p-10 bg-gray-900  rounded-lg shadow-lg">
+
+            <div class="product-slider">
+                <owl-carousel-o [options]="customOptions">
+                    @for (image of productDetails.images; track $index) 
+                    {
+                        <ng-template carouselSlide>
+                            <img [src]="image" class="h-[400px] w-full object-contain rounded-lg shadow-md p-4">
+                        </ng-template>
+                    }
+                </owl-carousel-o>
+            </div>
+
+            <div class="product-content  ">
+                <div class="details p-4 rounded-lg shadow-lg">
+                    <h2 class="text-indigo-500 font-extrabold text-xl mb-2">{{productDetails.title}}</h2>
+                    <p class=" my-2 text-gray-500">{{productDetails.description}}</p>
+                    <h2 class=" text-blue-700 font-semibold text-lg">{{productDetails.category.name}}</h2>
+                    <div class="mt-4 flex flex-wrap justify-between items-center">
+                        <span class="font-black text-lg text-indigo-400">{{productDetails.price}} EGP</span>
+                        <div class="small flex items-center">
+                            @for (star of [1, 2, 3, 4, 5].slice(0, productDetails.ratingsAverage); track $index) {
+                                <span><i class="fa-solid fa-star text-rating"></i></span>
+                            }
+                            @if (productDetails.ratingsAverage % 1 != 0) {
+                                <i class="fa-solid fa-star-half-stroke text-rating"></i>
+                            }
+                            <span class="font-black ml-1 text-indigo-400">{{productDetails.ratingsAverage}}</span>
+                        </div>
+                    </div>
+                    <button (click)="addCartItem(productDetails._id)" class="secondery-btn w-full mt-4  py-2 ">Add To Cart +</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    }

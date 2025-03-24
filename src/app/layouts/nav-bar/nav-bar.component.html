@@ -1,0 +1,86 @@
+<nav class="sticky top-0 left-0 right-0 bg-gray-200 dark:bg-gray-900  dark:text-white ">
+    <div class="max-w-[95%] mx-auto flex flex-wrap items-center justify-between">
+        <a class="flex items-center space-x-3 md:w-[10%]">
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <img src="./images/freshcart-logo.svg" alt="FreshCart Logo" class="h-8">
+        </span>
+        </a>
+        <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center cursor-pointer p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+            </svg>
+        </button>
+        <div class="hidden w-full md:flex md:justify-between md:w-[90%]" id="navbar-default">
+            @if (isLogin())
+            {
+                <ul class="font-medium p-4 mt-3 flex flex-col md:flex-row md:mt-0 rounded-lg">
+                    <li>
+                        <a class="block py-2 px-3 rounded-md hover:text-indigo-700 hover:cursor-pointer duration-500" routerLink="home" routerLinkActive="bg-indigo-700 text-white">Home</a>
+                    </li>
+                    <li>
+                        <a class="block py-2 px-3 rounded-md hover:text-indigo-700 hover:cursor-pointer duration-500" routerLink="products" routerLinkActive="bg-indigo-700 text-white">Products</a>
+                    </li>
+                    <li>
+                        <a class="block py-2 px-3 rounded-md hover:text-indigo-700 hover:cursor-pointer duration-500" routerLink="categories" routerLinkActive="bg-indigo-700 text-white">Categories</a>
+                    </li>
+                    <li>
+                        <a class="block py-2 px-3 rounded-md hover:text-indigo-700 hover:cursor-pointer duration-500" routerLink="brands" routerLinkActive="bg-indigo-700 text-white">Brands</a>
+                    </li>
+                </ul>
+            }
+        <ul class="font-medium p-4 mt-3 flex flex-col md:flex-row md:mt-0 rounded-lg  ms-auto">
+            @if(isLogin()){
+            <div class="sm:flex sm:flex-row md:space-x-2">
+                <a routerLink="cart" 
+                    class="cart-link relative flex items-center py-2 px-4 sm:px-7 text-slate-500 hover:text-indigo-700 cursor-pointer transition-colors duration-300 rounded-full">
+                    <i class="fa-solid fa-cart-shopping text-2xl" routerLinkActive="text-indigo-700"></i>
+                    <span class="cart-badge bg-indigo-600 text-white text-xs font-medium px-2 py-1 rounded-full absolute -top-1 -right-1">{{cartCounterNav()}}</span>
+                </a>
+                <a class=" py-2 px-1 sm:max-md:px-7 text-slate-500 hover:text-indigo-700 hover:cursor-pointer transition-colors duration-500 rounded-ful"><i class="fa-brands fa-facebook"></i></a>
+                <a class=" py-2 px-1 sm:max-md:px-7 text-slate-500 hover:text-indigo-700 hover:cursor-pointer transition-colors duration-500 rounded-ful"><i class="fa-brands fa-twitter"></i></a>
+                <a class=" py-2 px-1 sm:max-md:px-7 text-slate-500 hover:text-indigo-700 hover:cursor-pointer transition-colors duration-500 rounded-ful"><i class="fa-brands fa-linkedin"></i></a>
+                <a class=" py-2 px-1 sm:max-md:px-7 text-slate-500 hover:text-indigo-700 hover:cursor-pointer transition-colors duration-500 rounded-ful"><i class="fa-brands fa-youtube"></i></a>
+                <a class=" py-2 px-1 sm:max-md:px-7 text-slate-500 hover:text-indigo-700 hover:cursor-pointer transition-colors duration-500 rounded-ful"><i class="fa-brands fa-tiktok"></i></a>
+                <a class=" py-2 px-1 sm:max-md:px-7 text-slate-500 hover:text-indigo-700 hover:cursor-pointer transition-colors duration-500 rounded-ful"><i class="fa-brands fa-instagram"></i></a>
+            </div> 
+            }
+            
+            @if (!isLogin())
+            {
+                <li>
+                    <a class="block py-2 px-4 rounded-full" routerLink="login" routerLinkActive="bg-indigo-700 text-white">Login</a>
+                </li>
+                <li>
+                    <a class="block py-2 px-4 rounded-full" routerLink="register" routerLinkActive="bg-indigo-700 text-white">Register</a>
+                </li>
+            }@else
+            {
+                <li>
+                    <a  class="block py-2 px-3 rounded-full cursor-pointer" (click)="signOut()">LogOut</a>
+                </li>
+                
+            }
+        </ul>
+        
+        </div>
+    </div>
+</nav> 
+
+
+<!-- <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown button <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+            </svg>
+            </button> -->
+            <!-- Dropdown menu -->
+            <!-- <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                <li>
+                    <a role="button" [class.hidden]="checkCurrentLang('en') " (click)="change('en')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">English</a>
+                </li>
+                <li>
+                    <a role="button" [class.hidden]="checkCurrentLang('ar') " (click)="change('ar')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Arabic</a>
+                </li>
+                
+                </ul>
+            </div> -->

@@ -1,0 +1,96 @@
+<section class="register-Forms flex items-center justify-center ">
+    <div class="bg-gray-900  rounded-lg w-11/12 md:w-1/2 mx-auto text-center text-white">
+        <h2 class="main-title">Register</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="submitForm()" class="max-w-sm mx-auto">
+            @if (msgError) { <p class="bg-red-500 text-white m-2 p-3 border rounded font-bold text-center">{{msgError}}</p> }
+            @else if(msgSucsess) { <p class="bg-green-500 text-white m-2 p-3 border rounded font-bold text-center">{{msgSucsess}}</p> }
+            
+            <!-- Name Field -->
+            <div class="">
+                @let nameControl = registerForm.get('name');
+                <label for="name" class="main-label">Name</label>
+                <input id="name" formControlName="name" type="text" required class="main-input block w-full p-2  " />
+                @if (nameControl?.errors && nameControl?.touched) { 
+                    <div class="flex  m-2 p-1 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @if (nameControl?.getError('required')) {<li>Name is required</li>}
+                                @else if (nameControl?.getError('minlength')) {<li>Name min length: 3</li>}
+                                @else {<li>Name max length: 20</li>} 
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Email Field -->
+            <div class="">
+                @let emailControl = registerForm.get('email');
+                <label for="email" class="main-label">Email</label>
+                <input id="email" formControlName="email" type="email" class="main-input block w-full p-2 " />
+                @if (emailControl?.errors && emailControl?.touched) {
+                    <div class="flex  m-2 p-1 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @if (emailControl?.getError('required')) {<li>Email is required</li>}
+                                @else if (emailControl?.getError('email')) {<li>Please enter a valid email</li>}
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Password Field -->
+            <div class="">
+                @let passwordControl = registerForm.get('password');
+                <label for="password" class="main-label ">Password</label>
+                <input id="password" formControlName="password" type="password" class="main-input block w-full p-2 " />
+                @if (passwordControl?.errors && passwordControl?.touched) {
+                    <div class="flex  m-2 p-1 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @if (passwordControl?.getError('required')) {<li>Password is required</li>}
+                                @else if (passwordControl?.getError('pattern')) {<li>Please enter a valid password</li>}
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Re-enter Password Field -->
+            <div class="">
+                <label for="rePassword" class="main-label ">Re-enter Password</label>
+                <input id="rePassword" formControlName="rePassword" type="password" class="main-input block w-full p-2 " />
+                @if (registerForm.getError('mismatch') && registerForm.get('rePassword')?.touched) {
+                    <div class="flex  m-2 p-1 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                <li>Passwords do not match</li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Phone Field -->
+            <div class="">
+                @let phoneControl = registerForm.get('phone'); 
+                <label for="phone" class="main-label ">Phone</label>
+                <input id="phone" formControlName="phone" type="tel" class="main-input block w-full p-2 " />
+                @if (phoneControl?.errors && phoneControl?.touched) {
+                    <div class="flex  m-2 p-1 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @if (phoneControl?.getError('required')) {<li>Phone is required</li>}
+                                @else if (phoneControl?.getError('pattern')) {<li>Please enter a valid phone number</li>}
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="m-4 p-2 mx-auto secondery-btn w-full">Register @if (isLoading) {<span><i class="fas fa-spin fa-spinner"></i></span>}</button>
+        </form>
+    </div>
+</section>

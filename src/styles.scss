@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap");
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite/";
+@import 'ngx-toastr/toastr';
+
+@layer components{
+    .main-title{
+        @apply  text-5xl font-extrabold my-5 py-5 rounded-lg shadow-lg p-6 border-t-4 border-b-4 border-indigo-900 text-center w-auto text-indigo-700 
+    }
+    .secondery-btn{
+        @apply  bg-indigo-700 text-white rounded-lg text-white cursor-pointer rounded border transition duration-200 hover:bg-indigo-500  w-full mx-auto
+    }
+    .main-input{
+        @apply  block w-full text-gray-300  bg-gray-700 border border-gray-600 rounded rounded-lg focus:outline-none focus:ring focus:ring-indigo-500
+    }
+    .main-label{
+        @apply   text-left px-2 py-1 text-sm block font-bold text-white  
+    }
+}
+@theme{
+    --shadow-main: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px, rgba(145, 158, 171, 0.14) 0px 4px 5px 0px, rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+    --color-rating: #ffc908;
+}
+
+
+.product {
+    border: 1px solid #323680;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    button {
+        transform: translateY(500%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    &:hover {
+        border-width: 3px;
+        box-shadow: 0 0 10px rgba(50, 54, 128, 0.8);
+
+        button {
+            transform: translateY(0);
+        }
+    }
+}

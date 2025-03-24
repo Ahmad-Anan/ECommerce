@@ -1,0 +1,50 @@
+
+<section class="login-Forms   flex items-center justify-center ">
+    <div class="bg-gray-900 rounded-lg w-11/12 md:w-1/2 mx-auto text-center text-white">
+        <h2 class="main-title">login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="max-w-sm mx-auto">
+            @if (msgError) { <p class="bg-red-500 text-white m-2 p-3 border rounded font-bold text-center">{{msgError}}</p> }
+            @else if(msgSucsess) { <p class="bg-green-500 text-white m-2 p-3 border rounded font-bold text-center">{{msgSucsess}}</p> }
+            
+
+
+            <!-- Email Field -->
+            <div class="mt-4">
+                @let emailControl = loginForm.get('email');
+                <label for="email" class="main-label">Email</label>
+                <input id="email" formControlName="email" type="email" class="main-input  p-2 " />
+                @if (emailControl?.errors && emailControl?.touched) {
+                    <div class="flex  m-2 p-1 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @if (emailControl?.getError('required')) {<li>Email is required</li>}
+                                @else if (emailControl?.getError('email')) {<li>Please enter a valid email</li>}
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Password Field -->
+            <div class="mt-4">
+                @let passwordControl = loginForm.get('password');
+                <label for="password" class="main-label">Password</label>
+                <input id="password" formControlName="password" type="password" class="main-input  p-2 " />
+                @if (passwordControl?.errors && passwordControl?.touched) {
+                    <div class="flex  m-2 p-1 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @if (passwordControl?.getError('required')) {<li>Password is required</li>}
+                                @else if (passwordControl?.getError('pattern')) {<li>Please enter a valid password</li>}
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="mt-4 p-2 secondery-btn w-full transition duration-200 hover:bg-indigo-600">Login @if (isLoading) {<span><i class="fas fa-spin fa-spinner"></i></span>}</button>
+        </form>
+        <a routerLink="/forget" class='cursor-pointer block text-center p-2 my-2 mx-auto text-indigo-700'>Forget Password ?</a>
+    </div>
+</section>

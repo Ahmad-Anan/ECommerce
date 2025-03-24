@@ -1,0 +1,60 @@
+<section class="bg-gray-100 p-4 w-3/4 mx-auto rounded-lg shadow-md my-4">
+    <form [formGroup]="shippingAddress" (ngSubmit)="payOrder()">
+        <h1 class="text-blue-600 text-3xl font-bold my-3 text-center">Shipping Address</h1>
+        <div class="container mx-auto">
+            <div class="my-4">
+                <div class="mt-2">
+                    @let nameControle = shippingAddress.get('details');
+                    <label  for="details" class="p-2 m-2">Name</label>
+                    <input id="details" formControlName="details" type="text" required class=" block main-input ">
+                    @if (nameControle?.errors && nameControle?.touched)
+                    { 
+                        <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                            <div>
+                                <ul class="mt-1.5 list-disc list-inside">
+                                    @if (nameControle?.getError('required')) {<li>Name is Requeried</li>}
+                                    @else if (nameControle?.getError('minlenth')) {<li>Name MinLength : 3</li>}
+                                    @else  {<li>Name MaxLength : 20</li>} 
+                                </ul>
+                            </div>
+                        </div>
+                    } 
+                </div>
+            </div>
+            <div class="mt-2">
+                @let phoneControle = shippingAddress.get('phone'); 
+                <label  for="phone" class="p-2 m-2">Phone</label>
+                <input id="phone" formControlName="phone" type="tel" required class="  block main-input">
+                @if (phoneControle?.errors && phoneControle?.touched)
+                {
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @if (phoneControle?.getError('required')) {<li>Phone is Requeried</li>}
+                                @else if (phoneControle?.getError('pattern')) {<li>Enter Valid Phone </li>}
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="my-4">
+                @let cityControle = shippingAddress.get('city'); 
+                <label for="city" class="block text-gray-700 font-medium mb-1">City</label>
+                <input type="text" formControlName="city" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="city">
+                @if (cityControle?.errors && cityControle?.touched)
+                {
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @if (phoneControle?.getError('required')) {<li>City is Requeried</li>}
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <button type="submit" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-blue-700 transition-colors w-1/2 block mx-auto">Payment </button>
+    </form>
+</section>

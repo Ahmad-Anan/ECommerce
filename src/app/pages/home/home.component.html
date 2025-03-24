@@ -1,0 +1,85 @@
+
+
+<section class="home">
+    <section class=" category bg-gray-800">
+        <div class="flex flex-wrap mb-4">
+        <div class="w-full md:w-1/2 lg:w-3/4">
+            <owl-carousel-o [options]="staticCategorySlider">
+            <ng-template carouselSlide>
+                <img src="/images/slider-image-1.jpeg" class="h-[300px] w-full object-cover" alt="Slide 1">
+            </ng-template>
+            <ng-template carouselSlide>
+                <img src="/images/slider-image-2.jpeg" class="h-[300px] w-full object-cover" alt="Slide 2">
+            </ng-template>
+            <ng-template carouselSlide>
+                <img src="/images/slider-image-3.jpeg" class="h-[300px] w-full object-cover" alt="Slide 3">
+            </ng-template>
+            <ng-template carouselSlide>
+                <img src="/images/slider-2.jpeg" class="h-[300px] w-full object-cover" alt="Slide 4">
+            </ng-template>
+            <ng-template carouselSlide>
+                <img src="/images/grocery-banner.png" class="h-[300px] w-full object-cover" alt="Grocery Banner">
+            </ng-template>
+            <ng-template carouselSlide>
+                <img src="/images/banner-4.jpeg" class="h-[300px] w-full object-cover" alt="Banner 4">
+            </ng-template>
+            </owl-carousel-o>
+        </div>
+
+        <div class="w-full md:w-1/2 lg:w-1/4 flex flex-col ">
+            <img src="/images/grocery-banner.png" class="w-full h-[150px] object-cover" alt="Side Banner 1">
+            <img src="/images/banner-4.jpeg" class="w-full h-[150px] object-cover" alt="Side Banner 2">
+        </div>
+        </div>
+
+        <!-- Dynamic Category Slider -->
+        <owl-carousel-o [options]="dynamicCategorySlider" class="mt-6">
+        @for (category of categries; track category._id) {
+            <ng-template carouselSlide>
+            <img [src]="category.image" class="w-full h-[250px] object-cover" [alt]="category.name">
+            </ng-template>
+        }
+        </owl-carousel-o> 
+
+
+    <!-- Popular Products Section  -->
+
+        <section class="popular-products p-4 rounded-lg ">
+        <input [(ngModel)]="searchInputValue" ype="text" placeholder="Search By Name..." class="block text-left w-full max-w-md mx-auto p-3 mb-6 bg-indigo-900 text-white rounded-lg focus:outline-none">
+
+        <!-- Products Grid -->
+        @if (products)
+        {
+        <h1 class="   mb-6 main-title">Popular Products</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 bg-gray-900 rounded-lg ">
+            @for (product of products | search : searchInputValue; track product._id) {
+            <div class="product-card product p-6  "  >
+                <!-- Product Image -->
+                    <div [routerLink]="['/productDetails', product._id]">
+                        <div class=" rounded-lg mb-4">
+                            <img [src]="product.imageCover" class="w-full h-auto object-cover" [alt]="product.title">
+                        </div>
+                        <!-- Product Details -->
+                        <div class="flex-1">
+                            <h4 class="text-indigo-300 font-semibold">{{ product.category.name }}</h4>
+                            <h3 class="text-blue-700 font-semibold text-lg">{{product.title.split(' ', 3).join(' ')}}</h3>
+                            <div class="mt-4 flex justify-between items-center">
+                            <span class="font-bold text-lg text-indigo-400">{{ product.price }} EGP</span>
+                            <div class="flex items-center">
+                                @for (star of [1, 2, 3, 4, 5].slice(0, product.ratingsAverage); track $index) {
+                                <i class="fa-solid fa-star text-yellow-400"></i>
+                                }
+                                @if (product.ratingsAverage % 1 !== 0) {
+                                <i class="fa-solid fa-star-half-stroke text-yellow-400"></i>
+                                }
+                                <span class="font-bold ml-1 text-indigo-400">{{ product.ratingsAverage }}</span>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="mt-2">     <button (click)="addCartItem(product._id)" class="secondery-btn m-2 p-2" >Add To Cart</button></div>
+            </div>
+            }
+        </div>
+    }
+</section>

@@ -1,0 +1,19 @@
+
+@if(data)
+    {
+        <section class="p-4 bg-gray-800">
+            <div class="container mx-auto">
+                <h3 class="main-title">All Brands</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    @for (brand of data; track $index) {
+                        <div class="p-2 product">
+                                <div>
+                                    <img  [src]="brand.image" class="w-full rounded" [alt]="brand.name.split(' ').slice(0,2).join(' ')" srcset="">
+                                    <h3 class="text-center text-md mt-2 text-indigo-700 font-extrabold">{{brand.name}}</h3>
+                                </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }

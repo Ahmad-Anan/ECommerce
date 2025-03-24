@@ -1,0 +1,21 @@
+<section class="p-48 bg-gray-800">
+    <div class="container  mx-auto">
+        <h3 class="main-title">All Categories</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            @for (product of data; track $index) {
+                <div class="p-2 product">
+                    <div class=" cursor-pointer">
+                        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                            <img height="500" [src]="product.image" class="w-full object-cover rounded-t-lg" [alt]="product.name.split(' ').slice(0,2).join(' ')" srcset="">
+                            <div class="p-4">
+                                <h3 class="text-center text-xl font-bold">{{product.name}}</h3>
+                                <h4 class="text-center text-lg font-semibold text-indigo-600">{{product.slug}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+

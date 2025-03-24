@@ -1,0 +1,34 @@
+{
+    "nav": {
+        "home": "Home",
+        "products": "Products",
+        "categories": "Categories",
+        "about": "About Us",
+        "contact": "Contact Us",
+        "login": "Login",
+        "signup": "Sign Up"
+    },
+    "cart": {
+        "cart": "Shopping Cart",
+        "items": "Items in your cart",
+        "checkout": "Proceed to Checkout",
+        "empty": "Your cart is empty."
+    },
+    "product": {
+        "description": "Description",
+        "price": "Price",
+        "quantity": "Quantity",
+        "add_to_cart": "Add to Cart",
+        "buy_now": "Buy Now"
+    },
+        "footer": {
+        "terms": "Terms and Conditions",
+        "privacy": "Privacy Policy",
+        "faq": "Frequently Asked Questions",
+        "follow_us": "Follow Us"
+    },
+    "messages": {
+        "thank_you": "Thank you for your purchase!",
+        "order_confirmation": "Order Confirmation"
+    }
+}

@@ -1,0 +1,37 @@
+
+
+<section class="popular-product  p-6 bg-gray-800">
+    <div class="container mx-auto">
+        <h1 class="main-title text-center">All Products</h1>
+                
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">   
+            @for (product of products ; track product._id) 
+            {
+                <div class="inner product  p-3 border rounded-lg ">
+                    <div class="flex flex-col">
+                        <div class="card-img overflow-hidden mb-4 rounded-lg">
+                            <img [src]="product.imageCover" class="max-w-full h-auto object-cover mx-auto" [alt]="product.title" />
+                        </div>
+                        
+                        <div class="card-body flex-1   rounded-lg">
+                            <h4 class="text-indigo-300 font-bold ">{{product.category.name}}</h4>
+                            <h3 class="text-blue-700 font-semibold text-lg">{{product.title.split(' ', 3).join(' ')}}</h3>
+                            <div class="mt-4 flex justify-between items-center">
+                                <span class="font-black text-lg text-indigo-400">{{product.price}} EGP</span>
+                                <div class="small flex items-center">
+                                    @for (star of [1, 2, 3, 4, 5].slice(0, product.ratingsAverage); track $index) {
+                                        <span><i class="fa-solid fa-star text-rating"></i></span>
+                                    }
+                                    @if (product.ratingsAverage % 1 != 0) {
+                                        <i class="fa-solid fa-star-half-stroke text-rating"></i>
+                                    }
+                                    <span class="font-black ml-1 text-indigo-400">{{product.ratingsAverage}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
