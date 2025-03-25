@@ -1,7 +1,7 @@
 
 <section class="login-Forms   flex items-center justify-center ">
     <div class="bg-gray-900 rounded-lg w-11/12 md:w-1/2 mx-auto text-center text-white">
-        <h2 class="main-title">login</h2>
+        <h2 class="main-title w-1/2 mx-auto">login</h2>
         <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="max-w-sm mx-auto">
             @if (msgError) { <p class="bg-red-500 text-white m-2 p-3 border rounded font-bold text-center">{{msgError}}</p> }
             @else if(msgSucsess) { <p class="bg-green-500 text-white m-2 p-3 border rounded font-bold text-center">{{msgSucsess}}</p> }
